@@ -11,10 +11,15 @@ public class Main {
 	 public static final String SET_EMAIL      = "SE";
 	 public static final String LIST_CONTACTS  = "LC";
 	 public static final String QUIT           = "Q";
-	 
+	 public static final String SEARCH_CONTACT = "GN";
+	 public static final String EXISTS_REPEAT  = "RP";
+
 	 //Constantes que definem as mensagens para o utilizador
 	 public static final String CONTACT_EXISTS = "Contact already exists.";
 	 public static final String NAME_NOT_EXIST = "Contact does not exist.";
+	 public static final String NUMBER_NOT_EXIST = "Phone number does not exist.";
+	 public static final String REPEATED_CONTACTS_EXIST = "There are contacts that share phone numbers.";
+	 public static final String ALL_DIFFERENT = "All contacts have different phone numbers.";
 	 public static final String CONTACT_ADDED = "Contact added.";
 	 public static final String CONTACT_REMOVED = "Contact removed.";
 	 public static final String CONTACT_UPDATED = "Contact updated.";
@@ -49,6 +54,12 @@ public class Main {
 				 break;
 			 case LIST_CONTACTS:
 				 listAllContacts(cBook);
+				 break;
+			 case SEARCH_CONTACT:
+				 searchAllContactsNumber(in,cBook);
+				 break;
+			 case EXISTS_REPEAT:
+				 checkIfDuplicate(in,cBook);
 				 break;
 			 default:
 				 System.out.println(COMMAND_ERROR);
@@ -144,5 +155,16 @@ public class Main {
 			}
 		}
 		else System.out.println(BOOK_EMPTY);
+	}
+
+	private static void searchAllContactsNumber(Scanner in, ContactBook cBook) {
+		int number = in.nextInt();
+		if (cBook.checkNumberExists(number))
+			System.out.println();
+		else
+			System.out.println(NUMBER_NOT_EXIST);
+
+
+
 	}
 }

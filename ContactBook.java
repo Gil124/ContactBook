@@ -79,5 +79,25 @@ public class ContactBook {
 			tmp[i] = contacts[i];
 		contacts = tmp;
 	}
+
+	private int searchNumber(int number) {
+		int i = 0;
+		int result = -1;
+		boolean found = false;
+		while (i <counter && ! found)
+			if (contacts[i].getPhone() == number)
+				found =true;
+		else
+			i++;
+		if (found) result = i;
+		return result;
+	}
+
+	public boolean checkNumberExists(int number) {
+		if (searchNumber(number) >= 0)
+			return true;
+		else
+			return false;
+	}
 	
 }
