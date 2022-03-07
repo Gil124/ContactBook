@@ -74,7 +74,7 @@ public class ContactBook {
 	}
 
 	private void resize() {
-		Contact tmp[] = new Contact[2*contacts.length];
+		Contact[] tmp = new Contact[2*contacts.length];
 		for (int i=0;i<counter; i++)
 			tmp[i] = contacts[i];
 		contacts = tmp;
@@ -109,10 +109,7 @@ public class ContactBook {
 	}
 
 	public boolean checkNumberExists(int number) {
-		if (searchNumber(number) >= 0)
-			return true;
-		else
-			return false;
+		return searchNumber(number) >= 0;
 	}
 
 	public boolean checkIfRepeated() {
