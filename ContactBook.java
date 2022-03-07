@@ -84,13 +84,28 @@ public class ContactBook {
 		int i = 0;
 		int result = -1;
 		boolean found = false;
-		while (i <counter && ! found)
+		while (i <counter && ! found) {
 			if (contacts[i].getPhone() == number)
-				found =true;
-		else
-			i++;
+				found = true;
+			else
+				i++;
+		}
 		if (found) result = i;
 		return result;
+	}
+
+	public String getOldestNumber(int number) {
+		int i = 0;
+		boolean found = false;
+		String contactName = null;
+		while (i < counter && !found) {
+			if (contacts[i].getPhone() == number) {
+				found = true;
+				contactName = contacts[i].getName();
+			} else
+				i++;
+		}
+		return contactName;
 	}
 
 	public boolean checkNumberExists(int number) {
@@ -99,5 +114,21 @@ public class ContactBook {
 		else
 			return false;
 	}
-	
+
+	public boolean checkIfRepeated() {
+		int i = 0;
+		boolean repeated = false;
+		while (i < counter && !repeated) {
+			int j = i + 1;
+			while (j < counter && !repeated) {
+				if (contacts[i].getPhone() == contacts[j].getPhone())
+					repeated = true;
+				else
+					j++;
+			}
+			i++;
+			}
+
+		return repeated;
+	}
 }

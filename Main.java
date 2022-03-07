@@ -12,7 +12,7 @@ public class Main {
 	 public static final String LIST_CONTACTS  = "LC";
 	 public static final String QUIT           = "Q";
 	 public static final String SEARCH_CONTACT = "GN";
-	 public static final String EXISTS_REPEAT  = "RP";
+	 public static final String EXISTS_REPEAT  = "EP";
 
 	 //Constantes que definem as mensagens para o utilizador
 	 public static final String CONTACT_EXISTS = "Contact already exists.";
@@ -59,7 +59,7 @@ public class Main {
 				 searchAllContactsNumber(in,cBook);
 				 break;
 			 case EXISTS_REPEAT:
-				 checkIfDuplicate(in,cBook);
+				 checkIfDuplicate(cBook);
 				 break;
 			 default:
 				 System.out.println(COMMAND_ERROR);
@@ -158,13 +158,18 @@ public class Main {
 	}
 
 	private static void searchAllContactsNumber(Scanner in, ContactBook cBook) {
-		int number = in.nextInt();
+		int number = in.nextInt();in.nextLine();
 		if (cBook.checkNumberExists(number))
-			System.out.println();
+			System.out.println(cBook.getOldestNumber(number));
 		else
 			System.out.println(NUMBER_NOT_EXIST);
+	}
 
-
+	public static void checkIfDuplicate(ContactBook cBook) {
+		if (cBook.checkIfRepeated())
+			System.out.println(REPEATED_CONTACTS_EXIST);
+		else
+			System.out.println(ALL_DIFFERENT);
 
 	}
 }
